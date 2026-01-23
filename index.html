@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Harrison the Perceptionist</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     * {
@@ -23,8 +23,8 @@
     .hero {
       min-height: 100vh;
       height: 100vh;
-      background: url("hero.jpg") center center / cover no-repeat;
-      background-attachment: scroll;          /* mobile default – fixed can be laggy */
+      background: url("hero.jpg") center center / contain no-repeat;
+      background-color: #000;                    /* fallback color if image fails */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -34,46 +34,64 @@
 
     .overlay {
       background: rgba(0, 0, 0, 0.65);
-      padding: clamp(1.5rem, 8vw, 3.5rem) clamp(1.2rem, 6vw, 3rem);
-      border-radius: 12px;
-      max-width: 90%;
-      backdrop-filter: blur(4px);           /* optional – nice subtle effect if supported */
+      padding: clamp(1.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3.5rem);
+      border-radius: 16px;
+      max-width: 92%;
+      backdrop-filter: blur(5px);                /* subtle glass effect – remove if not wanted */
     }
 
     .text {
-      letter-spacing: 1.8px;
-      font-size: clamp(13px, 3.1vw, 17px);
-      line-height: 1.5;
-      max-width: 38ch;
-      opacity: 0.95;
+      letter-spacing: 1.6px;
+      font-size: clamp(14px, 3.2vw, 20px);
+      line-height: 1.55;
+      max-width: 42ch;
+      opacity: 0.97;
     }
 
-    /* Larger screens – can use fixed background for parallax-like feel */
-    @media (min-width: 768px) {
+    /* Desktop / large screens – make sure full image is comfortably visible */
+    @media (min-width: 1024px) {
       .hero {
-        background-attachment: fixed;
+        background-size: contain;
+        background-position: center;
+        padding: 40px;
       }
-      .text {
-        font-size: clamp(15px, 1.4vw, 18px);
-        letter-spacing: 2.2px;
-      }
-    }
-
-    /* Very small phones (portrait) */
-    @media (max-width: 480px) {
       .overlay {
-        padding: 1.5rem 1.2rem;
+        padding: 3.5rem 4.5rem;
+        max-width: 80%;
       }
       .text {
-        font-size: clamp(12px, 3.4vw, 15px);
-        letter-spacing: 1.4px;
+        font-size: clamp(18px, 1.5vw, 24px);
+        letter-spacing: 2.4px;
       }
     }
 
-    /* Landscape phones / small tablets */
-    @media (max-width: 896px) and (orientation: landscape) {
+    /* Very tall/narrow screens (e.g. phones in portrait) */
+    @media (max-width: 480px) and (orientation: portrait) {
       .hero {
-        min-height: 120vh;   /* helps avoid awkward cropping on short landscape viewports */
+        padding: 15px;
+      }
+      .overlay {
+        padding: 1.8rem 1.4rem;
+      }
+      .text {
+        font-size: clamp(13px, 3.6vw, 16px);
+        letter-spacing: 1.3px;
+      }
+    }
+
+    /* Landscape phones / tablets – prevent awkward empty space */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .hero {
+        min-height: 120vh;                      /* gives breathing room */
+        align-items: flex-start;
+        padding-top: 8vh;
+      }
+    }
+
+    /* Optional: use dynamic viewport height on mobile (better iOS address bar behavior) */
+    @supports (height: 100dvh) {
+      .hero {
+        height: 100dvh;
       }
     }
   </style>
