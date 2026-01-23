@@ -24,31 +24,34 @@
       min-height: 100vh;
       height: 100vh;
       background: url("hero.jpg") center center / contain no-repeat;
-      background-color: #000;                    /* fallback color if image fails */
+      background-color: #000;
       display: flex;
+      flex-direction: column;          /* changed to column → content at bottom */
+      justify-content: flex-end;       /* pushes content to bottom */
       align-items: center;
-      justify-content: center;
       text-align: center;
       padding: 20px;
+      position: relative;
     }
 
     .overlay {
-      background: rgba(0, 0, 0, 0.65);
-      padding: clamp(1.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3.5rem);
+      background: rgba(0, 0, 0, 0.68);
+      padding: clamp(1.4rem, 5vw, 3rem) clamp(1.4rem, 4.5vw, 3.2rem);
       border-radius: 16px;
-      max-width: 92%;
-      backdrop-filter: blur(5px);                /* subtle glass effect – remove if not wanted */
+      max-width: 90%;
+      margin-bottom: clamp(1.5rem, 8vh, 10vh);  /* space from very bottom edge */
+      backdrop-filter: blur(5px);
     }
 
     .text {
       letter-spacing: 1.6px;
-      font-size: clamp(14px, 3.2vw, 20px);
-      line-height: 1.55;
-      max-width: 42ch;
+      font-size: clamp(14px, 3.4vw, 21px);
+      line-height: 1.5;
+      max-width: 44ch;
       opacity: 0.97;
     }
 
-    /* Desktop / large screens – make sure full image is comfortably visible */
+    /* Desktop / larger screens – more breathing room at bottom */
     @media (min-width: 1024px) {
       .hero {
         background-size: contain;
@@ -56,39 +59,36 @@
         padding: 40px;
       }
       .overlay {
-        padding: 3.5rem 4.5rem;
-        max-width: 80%;
+        padding: 3rem 5rem;
+        max-width: 75%;
+        margin-bottom: 12vh;           /* bigger gap from bottom on wide screens */
       }
       .text {
-        font-size: clamp(18px, 1.5vw, 24px);
-        letter-spacing: 2.4px;
+        font-size: clamp(18px, 1.6vw, 26px);
+        letter-spacing: 2.5px;
       }
     }
 
-    /* Very tall/narrow screens (e.g. phones in portrait) */
+    /* Small portrait phones – tighter but still readable */
     @media (max-width: 480px) and (orientation: portrait) {
-      .hero {
-        padding: 15px;
-      }
       .overlay {
-        padding: 1.8rem 1.4rem;
+        padding: 1.6rem 1.3rem;
+        margin-bottom: 6vh;
       }
       .text {
-        font-size: clamp(13px, 3.6vw, 16px);
-        letter-spacing: 1.3px;
+        font-size: clamp(13px, 3.7vw, 17px);
+        letter-spacing: 1.4px;
       }
     }
 
-    /* Landscape phones / tablets – prevent awkward empty space */
+    /* Landscape – avoid being too close to edge */
     @media (orientation: landscape) and (max-height: 600px) {
-      .hero {
-        min-height: 120vh;                      /* gives breathing room */
-        align-items: flex-start;
-        padding-top: 8vh;
+      .overlay {
+        margin-bottom: 4vh;
       }
     }
 
-    /* Optional: use dynamic viewport height on mobile (better iOS address bar behavior) */
+    /* Better iOS Safari full-height handling */
     @supports (height: 100dvh) {
       .hero {
         height: 100dvh;
