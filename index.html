@@ -1,109 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Harrison the Perceptionist</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #000;
-      color: #fff;
-    }
-
-    .hero {
-      min-height: 100vh;
-      height: 100vh;
-      background: url("hero.jpg") center center / contain no-repeat;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;          /* changed to column → content at bottom */
-      justify-content: flex-end;       /* pushes content to bottom */
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.68);
-      padding: clamp(1.4rem, 5vw, 3rem) clamp(1.4rem, 4.5vw, 3.2rem);
-      border-radius: 16px;
-      max-width: 90%;
-      margin-bottom: clamp(1.5rem, 8vh, 10vh);  /* space from very bottom edge */
-      backdrop-filter: blur(5px);
-    }
-
-    .text {
-      letter-spacing: 1.6px;
-      font-size: clamp(14px, 3.4vw, 21px);
-      line-height: 1.5;
-      max-width: 44ch;
-      opacity: 0.97;
-    }
-
-    /* Desktop / larger screens – more breathing room at bottom */
-    @media (min-width: 1024px) {
-      .hero {
-        background-size: contain;
-        background-position: center;
-        padding: 40px;
-      }
-      .overlay {
-        padding: 3rem 5rem;
-        max-width: 75%;
-        margin-bottom: 12vh;           /* bigger gap from bottom on wide screens */
-      }
-      .text {
-        font-size: clamp(18px, 1.6vw, 26px);
-        letter-spacing: 2.5px;
-      }
-    }
-
-    /* Small portrait phones – tighter but still readable */
-    @media (max-width: 480px) and (orientation: portrait) {
-      .overlay {
-        padding: 1.6rem 1.3rem;
-        margin-bottom: 6vh;
-      }
-      .text {
-        font-size: clamp(13px, 3.7vw, 17px);
-        letter-spacing: 1.4px;
-      }
-    }
-
-    /* Landscape – avoid being too close to edge */
-    @media (orientation: landscape) and (max-height: 600px) {
-      .overlay {
-        margin-bottom: 4vh;
-      }
-    }
-
-    /* Better iOS Safari full-height handling */
-    @supports (height: 100dvh) {
-      .hero {
-        height: 100dvh;
-      }
-    }
-  </style>
+&nbsp;&nbsp;<meta charset="utf-8">
+&nbsp;&nbsp;<title>Harrison the Perceptionist</title>
+&nbsp;&nbsp;<meta name="viewport" content="width=device-width, initial-scale=1">
+&nbsp;
+&nbsp;&nbsp;<style>
+&nbsp;&nbsp;&nbsp;&nbsp;html, body {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family: Arial, Helvetica, sans-serif;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #000;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;.hero {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100vh;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: url("hero.jpg") center center / contain no-repeat;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: flex;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;align-items: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;justify-content: center;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;.overlay {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: rgba(0, 0, 0, 0.6);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 40px;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;img {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width: 320px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: auto;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;.text {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-top: 14px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #fff;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letter-spacing: 2px;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 14px;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;</style>
 </head>
 <body>
-  <div class="hero">
-    <div class="overlay">
-      <div class="text">
-        “The world exists only when we think about it.”<br>
-        — Jean Klein
-      </div>
-    </div>
-  </div>
+&nbsp;&nbsp;<div class="hero">
+&nbsp;&nbsp;&nbsp;&nbsp;<div class="overlay">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="text">“The world exists only when we think about it.”
+— Jean Klein</div>
+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+&nbsp;&nbsp;</div>
 </body>
 </html>
