@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-&nbsp;&nbsp;<meta charset="utf-8">
-<title>Harrison the Perceptionist</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Harrison the Perceptionist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+    }
 
-<style>
-html, body {
-margin: 0;
-height: 100%;
-font-family: Arial, Helvetica, sans-serif;
-background: #000;
-}
-.hero {
-height: 100vh;
-background: url("hero.jpg") center center / contain no-repeat;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-}
-.overlay {
-background: rgba(0, 0, 0, 0.6);
-padding: 40px;
-}
-img {
-max-width: 320px;
-width: 100%;
-height: auto;
-}
-.text {
-margin-top: 14px;
-color: #fff;
-letter-spacing: 2px;
-font-size: 14px;
-}
-</style>
+    .hero {
+      height: 100vh;
+      background: url("hero.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 5vw; /* responsive padding */
+      max-width: 90%;
+      border-radius: 12px; /* optional rounded corners for mobile aesthetics */
+    }
+
+    img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .text {
+      margin-top: 14px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-size: calc(14px + 1vw); /* responsive font size */
+      line-height: 1.4;
+    }
+
+    /* Optional: make hero section scroll-friendly on very small screens */
+    @media (max-height: 500px) {
+      .hero {
+        height: auto;
+        padding: 40px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="hero">
-<div class="overlay">
-
-<div class="text">“The world exists only when we think about it.”
-— Jean Klein</div>
-</div>
-</div>
+  <main class="hero">
+    <div class="overlay">
+      <img src="hero.jpg" alt="Hero image">
+      <div class="text">“The world exists only when we think about it.”<br>— Jean Klein</div>
+    </div>
+  </main>
 </body>
 </html>
