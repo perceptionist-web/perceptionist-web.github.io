@@ -10,24 +10,18 @@
     <meta name="keywords" content="magician, mind reader, mentalist, magic, telepathy, Harrison magician">
     <meta name="robots" content="index, follow">
 
-    <!-- Social (optional but good for previews) -->
-    <meta property="og:title" content="Harrison the Perceptionist">
-    <meta property="og:description" content="Mind reading. Perception. Telepathy.">
-    <meta property="og:type" content="website">
-
     <style>
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow: hidden; /* No scrollbars */
-            font-family: Arial, Helvetica, sans-serif;
-            background: #000;
-            color: #fff;
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
         }
 
         .container {
-            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -41,99 +35,25 @@
             width: 100%;
             height: 100%;
             object-fit: contain; /* Resize to fit any screen without cropping */
-            user-select: none;
-            -webkit-user-drag: none;
         }
 
-        /* Caption area pinned to bottom, centered */
         .caption {
             position: absolute;
             bottom: 20px;
-            width: 100%;
             text-align: center;
-            padding: 0 16px; /* breathing room on small screens */
-            box-sizing: border-box;
-        }
-
-        /* Typewriter text styles */
-        .typewriter {
-            display: inline-block;
+            width: 100%;
             font-size: 1.4rem;
             letter-spacing: 1px;
-            white-space: nowrap;
-            /* Soft glow for readability atop any image */
-            text-shadow: 0 0 6px rgba(0,0,0,0.65), 0 0 18px rgba(0,0,0,0.45);
-            border-right: 2px solid rgba(255,255,255,0.85); /* caret */
-            padding-right: 4px;
-            will-change: contents;
-        }
-
-        /* Caret blink after typing finishes */
-        @keyframes caret-blink {
-            0%   { border-right-color: rgba(255,255,255,0.9); }
-            50%  { border-right-color: rgba(255,255,255,0.1); }
-            100% { border-right-color: rgba(255,255,255,0.9); }
-        }
-
-        /* Larger text on bigger screens */
-        @media (min-width: 480px) {
-            .typewriter { font-size: 1.6rem; }
-        }
-        @media (min-width: 960px) {
-            .typewriter { font-size: 1.8rem; }
-        }
-
-        /* Respect reduced motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .typewriter {
-                border-right: none;
-            }
+            text-shadow: 0 0 10px rgba(0,0,0,0.6);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <img src="hero.jpg" alt="Harrison the Perceptionist" class="hero-image" aria-hidden="true">
-        <div class="caption" aria-live="polite">
-            <span id="tw" class="typewriter" data-text="Please contact Harrison via telepathy"></span>
-            <noscript>Please contact Harrison via telepathy</noscript>
-        </div>
+        <img src="hero.jpg" alt="Harrison the Perceptionist" class="hero-image">
+        <div class="caption">Please contact Harrison via telepathy</div>
     </div>
-
-    <script>
-        (function () {
-            const el = document.getElementById('tw');
-            if (!el) return;
-
-            const fullText = el.getAttribute('data-text') || '';
-            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            // If reduced motion is preferred, just show the text instantly.
-            if (prefersReduced) {
-                el.textContent = fullText;
-                return;
-            }
-
-            let i = 0;
-            const baseDelay = 55;     // base milliseconds per character
-            const jitter = 35;        // random variance for a more organic feel
-
-            function typeNext() {
-                if (i <= fullText.length) {
-                    el.textContent = fullText.slice(0, i);
-                    i++;
-                    const delay = baseDelay + Math.random() * jitter;
-                    setTimeout(typeNext, delay);
-                } else {
-                    // Start a gentle caret blink once typing is done
-                    el.style.animation = 'caret-blink 1s step-end infinite';
-                }
-            }
-
-            // Small initial delay for dramatic effect
-            setTimeout(typeNext, 350);
-        })();
-    </script>
 </body>
 </html>
+``
