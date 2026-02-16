@@ -20,10 +20,6 @@
 
     * { box-sizing: border-box; }
 
-    html {
-      font-size: 100%;                /* Base for rem/em */
-    }
-
     body {
       margin: 0;
       font-family: 'Instrument Sans', system-ui, sans-serif;
@@ -60,15 +56,10 @@
       padding: 2rem 1.25rem;
     }
 
-    .sonsofpsychicnuns {
-      max-width: 400px;
-      margin: 2rem auto 3.5rem;
-    }
-
     main {
-      font-size: clamp(1.05rem, 3vw + 0.4rem, 1.125rem); /* fluid scaling */
+      font-size: clamp(1.05rem, 3vw + 0.4rem, 1.125rem);
       line-height: 1.65;
-      max-width: 65ch;  /* better readability on wider phones/tablets */
+      max-width: 65ch;
       margin: 0 auto;
     }
 
@@ -143,7 +134,7 @@
       font-size: 1.05rem;
       cursor: pointer;
       transition: all 0.2s ease;
-      min-height: 48px;          /* better touch target */
+      min-height: 48px;
       min-width: 140px;
     }
 
@@ -158,91 +149,14 @@
       color: #777;
     }
 
-    /* ────────────────────────────────────────
-       MOBILE TWEAKS
-    ──────────────────────────────────────── */
-    @media (max-width: 500px) {
-      .container { 
-        padding: 1.5rem 1.1rem; 
-      }
-      .logo { 
-        max-width: 320px;          /* prevent logo dominating tiny screens */
-        margin: 1.5rem auto 2.5rem;
-      }
-      main { 
-        font-size: 1.05rem; 
-      }
-      h2 { 
-        margin: 3rem 0 1rem; 
-      }
-      button { 
-        width: 100%;               /* full-width button on mobile = easier tap */
-        padding: 1rem;
-      }
+    /* ───────────────────────────────
+       NEW SOCIAL SECTION STYLES
+    ─────────────────────────────── */
+    .social-section {
+      margin: 4rem 0 5rem;
     }
 
-    @media (max-width: 360px) {
-      .container { padding: 1.2rem 0.9rem; }
-      .logo { max-width: 280px; }
-    }
-
-    @media print {
-      .logo, form, .soundcloud-wrapper { display: none; }
-      body { padding: 1cm; font-size: 11pt; background: white; }
-      a { text-decoration: underline; color: black; border: none; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-
-    <img src="sonsofpsychicnuns.png" alt="Sons of Psychic Nuns Running Club logo — cosmic Yorkshire runners" class="logo" loading="lazy">
-    <main>
-      <section class="theme-section">
-        <h2>Theme tune</h2>
-        <p>
-          <a href="https://soundcloud.com/patri-3/sons-of-psychic-nuns" target="_blank" rel="noopener noreferrer">
-            Sons of Psychic Nuns — by Patrick Grace (2012)
-          </a>
-        </p>
-        <div class="soundcloud-wrapper">
-          <iframe
-            width="100%"
-            height="166"
-            scrolling="no"
-            frameborder="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/patri-3/sons-of-psychic-nuns&color=%23000000&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false">
-          </iframe>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <h2>Contact</h2>
-      <form action="https://formspree.io/f/mrepgeen" method="POST">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required autocomplete="name">
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required autocomplete="email">
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <input type="text" name="_gotcha" style="display:none">
-
-        <button type="submit">Send message</button>
-      </form>
-
-      <p class="privacy">
-        This form sends an email directly to the organisers.<br>
-        Your details are not stored, shared, or used for marketing.
-      </p>
-    </footer>
-
-  </div>
-
-</body>
-</html>
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
