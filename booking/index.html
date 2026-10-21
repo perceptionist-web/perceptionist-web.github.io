@@ -521,7 +521,7 @@
 
 <body>
 
-  #mainSkip to main content</a>
+  <a class="skip" href="#main">Skip to main content</a>
 
   <header class="hero">
     <div class="hero-inner">
@@ -541,11 +541,12 @@
       </p>
 
       <div class="actions">
-        harrison@perceptionist.co.uk?subject=Booking%20enquiry
+        <a class="button primary"
+           href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry">
           Make an enquiry
         </a>
 
-        #gallery
+        <a class="button" href="#gallery">
           View photographs
         </a>
       </div>
@@ -732,15 +733,13 @@
         </div>
 
         <div class="contact-links">
-
-          harrison@perceptionist.co.uk?subject=Booking%20enquiry
+          <a href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry">
             harrison@perceptionist.co.uk
           </a>
 
-          tel:+447752335379
+          <a href="tel:+447752335379">
             07752 335379
           </a>
-
         </div>
 
       </div>
@@ -794,6 +793,12 @@
       >
         ›
       </button>
+
+      <img
+        id="largePhoto"
+        src=""
+        alt="Harrison Richards performing at an event"
+      />
 
       <div
         class="counter"
