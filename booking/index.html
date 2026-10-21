@@ -521,7 +521,7 @@
 
 <body>
 
-  <a class="skip" href="#main">Skip to main content</a>
+  #mainSkip to main content</a>
 
   <header class="hero">
     <div class="hero-inner">
@@ -541,14 +541,11 @@
       </p>
 
       <div class="actions">
-        <a
-          class="button primary"
-          href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry"
-        >
+        harrison@perceptionist.co.uk?subject=Booking%20enquiry
           Make an enquiry
         </a>
 
-        <a class="button" href="#gallery">
+        #gallery
           View photographs
         </a>
       </div>
@@ -736,13 +733,11 @@
 
         <div class="contact-links">
 
-          <a
-            href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry"
-          >
+          harrison@perceptionist.co.uk?subject=Booking%20enquiry
             harrison@perceptionist.co.uk
           </a>
 
-          <a href="tel:+447752335379">
+          tel:+447752335379
             07752 335379
           </a>
 
@@ -789,11 +784,7 @@
         ‹
       </button>
 
-      <img
-        id="largePhoto"
-        src=""
-        alt="Harrison Richards performing at an event"
-      >
+      
 
       <button
         type="button"
@@ -1008,7 +999,25 @@
       showMore.addEventListener(
         "click",
         () => {
-  closeViewer
+
+          expanded = !expanded;
+
+          renderGallery();
+
+          if (!expanded) {
+
+            document
+              .getElementById("gallery")
+              .scrollIntoView();
+
+          }
+
+        }
+      );
+
+      closeButton.addEventListener(
+        "click",
+        closeViewer
       );
 
       previousButton.addEventListener(
