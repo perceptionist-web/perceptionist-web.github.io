@@ -1,0 +1,233 @@
+bash -lc python - <<'PY'
+from pathlib import Path
+from urllib.parse import quote
+import json, html
+root=Path('/mnt/data')
+imgs=sorted([p.name for p in root.iterdir() if p.suffix.lower() in {'.jpg','.jpeg'}], key=str.lower)
+# Prioritise a varied opening sequence, then include all remaining images exactly once.
+priority=[
+'Wedding-entertainer.jpg','YCS-Leeds24-138.jpg','Blindfold-magician.jpg','Corporate-entertainer.jpg',
+'Amazing-Wedding.jpg','Conference-entertainment.jpg','20191108_220924.jpg','Mind-Reading-Cabaret.jpg',
+'Zoltar-machine-uk.jpg','wedding-magician-1.jpg','Corporate-magician.jpg','Harrison_Headshot_Crop_DSC_29327-1X1-Centered.jpeg'
+]
+ordered=[]
+for n in priority+imgs:
+    if n in imgs and n not in ordered: ordered.append(n)
+items=[{'src':'images/'+quote(n), 'alt':'Harrison Richards performing at an event', 'name':n} for n in ordered]
+js_items=json.dumps(items, ensure_ascii=False)
+html_text=f'''<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="description" content="Booking information, photographs and reviews for Harrison Richards, The Perceptionist.">
+  <title>Booking | Harrison Richards – The Perceptionist</title>
+  <style>
+    :root {{ --ink:#f8f3ed; --muted:#c9c0b8; --night:#100f12; --panel:#1a171b; --red:#bd1f2d; --gold:#d4ad72; --line:rgba(255,255,255,.12); }}
+    * {{ box-sizing:border-box; }}
+    html {{ scroll-behavior:smooth; }}
+    body {{ margin:0; background:var(--night); color:var(--ink); font-family:Arial,Helvetica,sans-serif; line-height:1.6; }}
+    body.modal-open {{ overflow:hidden; }}
+    a {{ color:inherit; }}
+    .skip {{ position:absolute; left:-9999px; top:auto; }}
+    .skip:focus {{ left:1rem; top:1rem; z-index:100; background:#fff; color:#000; padding:.7rem 1rem; border-radius:.3rem; }}
+    .hero {{ min-height:78vh; display:grid; align-items:end; position:relative; isolation:isolate; background:linear-gradient(90deg,rgba(10,9,11,.95) 0%,rgba(10,9,11,.74) 48%,rgba(10,9,11,.18) 100%),url('images/{quote('Wedding-entertainer.jpg')}') center 35%/cover no-repeat; }}
+    .hero::after {{ content:""; position:absolute; inset:auto 0 0; height:45%; background:linear-gradient(transparent,var(--night)); z-index:-1; }}
+    .hero-inner {{ width:min(1120px,92vw); margin:0 auto; padding:8rem 0 5rem; }}
+    .eyebrow {{ color:var(--gold); font-size:.82rem; font-weight:700; letter-spacing:.32em; text-transform:uppercase; }}
+    h1 {{ margin:.35rem 0 0; font-family:Georgia,'Times New Roman',serif; font-size:clamp(3rem,9vw,7.4rem); font-weight:400; line-height:.85; letter-spacing:-.045em; max-width:900px; }}
+    h1 span {{ display:block; color:var(--red); font-family:Arial,Helvetica,sans-serif; font-size:.28em; letter-spacing:.24em; margin-top:1.15rem; text-transform:uppercase; }}
+    .hero-copy {{ max-width:690px; color:#eee5dc; font-size:clamp(1.05rem,2vw,1.25rem); margin:2rem 0 2.2rem; }}
+    .actions {{ display:flex; flex-wrap:wrap; gap:.8rem; }}
+    .button {{ display:inline-block; text-decoration:none; padding:.85rem 1.15rem; border:1px solid var(--gold); border-radius:999px; font-weight:700; transition:.2s ease; }}
+    .button.primary {{ background:var(--red); border-color:var(--red); }}
+    .button:hover,.button:focus-visible {{ transform:translateY(-2px); background:var(--gold); color:#171113; outline:none; }}
+    main section {{ width:min(1120px,92vw); margin:0 auto; padding:5.5rem 0; }}
+    .intro {{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(2rem,7vw,7rem); align-items:start; }}
+    .kicker {{ color:var(--red); font-weight:800; text-transform:uppercase; letter-spacing:.2em; font-size:.8rem; }}
+    h2 {{ margin:.35rem 0 1.1rem; font:400 clamp(2.3rem,6vw,4.6rem)/.98 Georgia,'Times New Roman',serif; }}
+    .lead {{ font-size:1.18rem; color:#eee5dc; }}
+    .facts {{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }}
+    .fact {{ border-top:2px solid var(--red); padding-top:.8rem; color:var(--muted); }}
+    .fact strong {{ color:var(--ink); display:block; font-size:1.05rem; }}
+    .full-bleed {{ width:100%; background:#f2ece4; color:#191619; }}
+    .full-bleed > section {{ padding-top:5rem; padding-bottom:5rem; }}
+    .section-head {{ display:flex; justify-content:space-between; align-items:end; gap:2rem; margin-bottom:2rem; }}
+    .section-head p {{ max-width:430px; color:#5d5551; margin:0; }}
+    .gallery {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.75rem; }}
+    .gallery button {{ appearance:none; border:0; padding:0; background:#ddd; cursor:zoom-in; overflow:hidden; aspect-ratio:4/3; border-radius:.25rem; position:relative; }}
+    .gallery img {{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease,filter .35s ease; }}
+    .gallery button:hover img,.gallery button:focus-visible img {{ transform:scale(1.045); filter:contrast(1.04); }}
+    .gallery button:focus-visible {{ outline:4px solid var(--red); outline-offset:3px; }}
+    .show-more-wrap {{ text-align:center; margin-top:2rem; }}
+    #showMore {{ color:#191619; background:transparent; cursor:pointer; }}
+    .reviews-grid {{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }}
+    blockquote {{ margin:0; padding:1.6rem; background:var(--panel); border-top:3px solid var(--red); border-radius:.25rem; display:flex; flex-direction:column; }}
+    blockquote p {{ margin:0 0 1.2rem; font-family:Georgia,'Times New Roman',serif; font-size:1.08rem; flex:1; }}
+    blockquote footer {{ color:var(--gold); font-size:.92rem; font-weight:700; }}
+    .contact {{ display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; background:linear-gradient(135deg,#7e111e,var(--red)); padding:clamp(2rem,5vw,4rem); border-radius:.5rem; }}
+    .contact h2 {{ margin:0 0 .8rem; }}
+    .contact p {{ margin:0; max-width:620px; }}
+    .contact-links {{ display:flex; flex-direction:column; gap:.7rem; min-width:max-content; }}
+    .contact-links a {{ text-decoration:none; font-weight:800; border-bottom:1px solid rgba(255,255,255,.55); }}
+    .site-footer {{ width:min(1120px,92vw); margin:0 auto; padding:2.2rem 0; color:#978e88; border-top:1px solid var(--line); font-size:.9rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }}
+    dialog {{ width:min(1160px,96vw); height:min(92vh,850px); border:0; padding:0; background:transparent; color:#fff; overflow:visible; }}
+    dialog::backdrop {{ background:rgba(0,0,0,.92); backdrop-filter:blur(5px); }}
+    .lightbox {{ height:100%; display:grid; grid-template-columns:3.25rem 1fr 3.25rem; grid-template-rows:3.25rem 1fr 2.5rem; align-items:center; }}
+    .lightbox img {{ grid-column:2; grid-row:1/3; max-width:100%; max-height:calc(92vh - 3rem); width:auto; height:auto; place-self:center; object-fit:contain; }}
+    .icon-button {{ width:2.8rem; height:2.8rem; border:1px solid rgba(255,255,255,.5); border-radius:50%; background:rgba(0,0,0,.45); color:#fff; font-size:1.5rem; cursor:pointer; z-index:2; }}
+    .close {{ grid-column:3; grid-row:1; align-self:start; justify-self:end; }}
+    .prev {{ grid-column:1; grid-row:2; }} .next {{ grid-column:3; grid-row:2; }}
+    .counter {{ grid-column:2; grid-row:3; text-align:center; color:#ddd; font-size:.9rem; }}
+    @media (max-width:850px) {{ .intro,.contact {{ grid-template-columns:1fr; }} .gallery {{ grid-template-columns:repeat(3,1fr); }} .reviews-grid {{ grid-template-columns:1fr 1fr; }} .contact-links {{ align-items:flex-start; }} }}
+    @media (max-width:580px) {{ .hero {{ min-height:72vh; background-position:58% center; }} .hero-inner {{ padding-bottom:3rem; }} main section {{ padding:4rem 0; }} .facts {{ grid-template-columns:1fr; }} .section-head {{ display:block; }} .gallery {{ grid-template-columns:repeat(2,1fr); gap:.5rem; }} .reviews-grid {{ grid-template-columns:1fr; }} .lightbox {{ grid-template-columns:2.8rem 1fr 2.8rem; }} }}
+    @media (prefers-reduced-motion:reduce) {{ html {{ scroll-behavior:auto; }} *,*::before,*::after {{ transition:none!important; }} }}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Mind reading · Magic · Live entertainment</div>
+      <h1>Harrison Richards<span>The Perceptionist</span></h1>
+      <p class="hero-copy">Unforgettable mind magic for weddings, corporate events, private parties and live audiences.</p>
+      <div class="actions">
+        <a class="button primary" href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry">Make an enquiry</a>
+        <a class="button" href="#gallery">View photographs</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="intro" aria-labelledby="about-title">
+      <div><div class="kicker">About Harrison</div><h2 id="about-title">Something remarkable for your event</h2></div>
+      <div>
+        <p class="lead">Harrison has predicted the future for celebrities on television, demonstrated direct mind-to-mind communication on radio and performed mind magic at events across the country.</p>
+        <p>Combining classic mind-reading methods with contemporary magic, psychology and a healthy dose of humour, Harrison creates entertainment designed to bring guests together and leave them with something to talk about long after the event.</p>
+        <div class="facts" aria-label="Types of event">
+          <div class="fact"><strong>Weddings</strong>Drinks receptions, photographs and evening celebrations</div>
+          <div class="fact"><strong>Corporate events</strong>Close-up entertainment and after-dinner performances</div>
+          <div class="fact"><strong>Private parties</strong>Interactive entertainment for mixed groups</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="full-bleed">
+      <section id="gallery" aria-labelledby="gallery-title">
+        <div class="section-head">
+          <div><div class="kicker">Gallery</div><h2 id="gallery-title">In performance</h2></div>
+          <p>Select any photograph to view it at a larger size. Use the arrow buttons or keyboard arrow keys to move through the gallery.</p>
+        </div>
+        <div class="gallery" id="galleryGrid"></div>
+        <div class="show-more-wrap"><button type="button" class="button" id="showMore">Show all photographs</button></div>
+      </section>
+    </div>
+
+    <section aria-labelledby="reviews-title">
+      <div class="section-head">
+        <div><div class="kicker">Reviews</div><h2 id="reviews-title">What clients say</h2></div>
+      </div>
+      <div class="reviews-grid">
+        <blockquote><p>“Harrison was fantastic and really made the party special for us; he exceeded our expectations. All the guests thoroughly enjoyed his performance. From start to finish we received a five-star service.”</p><footer>Michael G · Warwickshire</footer></blockquote>
+        <blockquote><p>“Some of the guests were confused, some of them blown away, but all of them were entertained and smiling from ear to ear. My only regret was that we hadn’t booked him for longer.”</p><footer>Lester J · Leeds</footer></blockquote>
+        <blockquote><p>“Harrison provided a great evening of entertainment, from the welcome drink mingle to the after-dinner show. The team were astonished and left completely dazed by the performance.”</p><footer>Emily S · Cheshire</footer></blockquote>
+        <blockquote><p>“Everyone was mesmerised by Harrison. Highly recommended for all ages. It was the perfect touch to our special day.”</p><footer>Catherine M · Ovenden</footer></blockquote>
+        <blockquote><p>“Our guests were ecstatic and can’t stop talking about some of the tricks. Punctual, mesmerising and wonderfully sociable with our guests.”</p><footer>Felicity &amp; Dan</footer></blockquote>
+        <blockquote><p>“Harrison really wowed partygoers at our Christmas Champagne Reception. Comments from our guests included ‘really impressive’ and ‘simply amazing’.”</p><footer>Josephine S · Pace Micro Technology</footer></blockquote>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-title">
+      <div class="contact">
+        <div><div class="eyebrow">Booking enquiries</div><h2 id="contact-title">Add something extraordinary to your event</h2><p>For availability, ideas and a straightforward conversation about what would suit your event, get in touch with Harrison.</p></div>
+        <div class="contact-links">
+          <a href="mailto:harrison@perceptionist.co.uk?subject=Booking%20enquiry">harrison@perceptionist.co.uk</a>
+          <a href="tel:+447752335379">07752 335379</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>© <span id="year"></span> Harrison Richards · The Perceptionist</span><span>This page is not linked from the main website.</span></footer>
+
+  <dialog id="viewer" aria-label="Photograph viewer">
+    <div class="lightbox">
+      <button type="button" class="icon-button close" id="closeViewer" aria-label="Close photograph">×</button>
+      <button type="button" class="icon-button prev" id="prevPhoto" aria-label="Previous photograph">‹</button>
+      <img id="largePhoto" src="" alt="">
+      <button type="button" class="icon-button next" id="nextPhoto" aria-label="Next photograph">›</button>
+      <div class="counter" id="counter" aria-live="polite"></div>
+    </div>
+  </dialog>
+
+  <script>
+  (() => {{
+    const photos = {js_items};
+    const grid = document.getElementById('galleryGrid');
+    const more = document.getElementById('showMore');
+    const viewer = document.getElementById('viewer');
+    const large = document.getElementById('largePhoto');
+    const counter = document.getElementById('counter');
+    let current = 0;
+    let expanded = false;
+    const initialCount = 16;
+
+    function renderGallery() {{
+      grid.replaceChildren();
+      const visible = expanded ? photos : photos.slice(0, initialCount);
+      visible.forEach((photo, index) => {{
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute('aria-label', `Open photograph ${{index + 1}} of ${{photos.length}}`);
+        const image = document.createElement('img');
+        image.src = photo.src;
+        image.alt = photo.alt;
+        image.loading = index < 8 ? 'eager' : 'lazy';
+        image.decoding = 'async';
+        button.append(image);
+        button.addEventListener('click', () => openViewer(index));
+        grid.append(button);
+      }});
+      more.textContent = expanded ? 'Show fewer photographs' : `Show all ${{photos.length}} photographs`;
+    }}
+
+    function showPhoto(index) {{
+      current = (index + photos.length) % photos.length;
+      large.src = photos[current].src;
+      large.alt = photos[current].alt;
+      counter.textContent = `${{current + 1}} of ${{photos.length}}`;
+    }}
+    function openViewer(index) {{ showPhoto(index); viewer.showModal(); document.body.classList.add('modal-open'); }}
+    function closeViewer() {{ viewer.close(); document.body.classList.remove('modal-open'); }}
+
+    more.addEventListener('click', () => {{ expanded = !expanded; renderGallery(); if (!expanded) document.getElementById('gallery').scrollIntoView(); }});
+    document.getElementById('closeViewer').addEventListener('click', closeViewer);
+    document.getElementById('prevPhoto').addEventListener('click', () => showPhoto(current - 1));
+    document.getElementById('nextPhoto').addEventListener('click', () => showPhoto(current + 1));
+    viewer.addEventListener('click', e => {{ if (e.target === viewer) closeViewer(); }});
+    viewer.addEventListener('close', () => document.body.classList.remove('modal-open'));
+    document.addEventListener('keydown', e => {{
+      if (!viewer.open) return;
+      if (e.key === 'ArrowLeft') showPhoto(current - 1);
+      if (e.key === 'ArrowRight') showPhoto(current + 1);
+    }});
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderGallery();
+  }})();
+  </script>
+</body>
+</html>
+'''
+out=root/'index.html'
+out.write_text(html_text, encoding='utf-8')
+print(f'Created {out} with {len(ordered)} gallery images; {out.stat().st_size} bytes')
+PY
+python - <<'PY'
+from pathlib import Path
+p=Path('/mnt/data/index.html')
+s=p.read_text(encoding='utf-8')
+checks=['booking enquiry','galleryGrid','showModal','harrison@perceptionist.co.uk','07752 335379']
+print({x:(x in s) for x in checks})
+print('html end:',s.strip().endswith('</html>'))
+PY
