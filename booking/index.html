@@ -81,7 +81,7 @@
           rgba(10, 9, 11, 0.74) 48%,
           rgba(10, 9, 11, 0.18) 100%
         ),
-        url("images/event1.jpg") center 20% / cover no-repeat;
+        url("images/a1.jpg") center 20% / cover no-repeat;
     }
 
     .hero::after {
@@ -516,6 +516,63 @@
         transition: none !important;
       }
     }
+    .contact form {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 2rem;
+  max-width: 600px;
+}
+
+.contact label {
+  font-weight: 700;
+  margin-top: 0.35rem;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.96);
+  color: #191619;
+  font: inherit;
+}
+
+.contact textarea {
+  resize: vertical;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.contact form button {
+  justify-self: start;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--night);
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contact form button:hover,
+.contact form button:focus-visible {
+  background: var(--gold);
+  color: #191619;
+}
+
+.privacy {
+  margin-top: 1rem !important;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
   </style>
 </head>
 
@@ -730,6 +787,53 @@
             For availability, ideas and a straightforward conversation
             about what would suit your event, get in touch with Harrison.
           </p>
+          <form action="https://formspree.io/f/mrepgeen" method="POST">
+
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+    >
+
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+    >
+
+    <label for="message">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      required
+    ></textarea>
+
+    <!-- Honeypot spam trap -->
+    <input
+      type="text"
+      name="_gotcha"
+      style="display:none"
+      tabindex="-1"
+      autocomplete="off"
+    >
+
+    <button type="submit">
+      Send message
+    </button>
+
+  </form>
+
+  <p class="privacy">
+    Your enquiry will be sent directly to Harrison.<br>
+    Your details are not stored, shared, or used for marketing.
+  </p>
         </div>
 
         <div class="contact-links">
@@ -825,6 +929,7 @@
 
         "Wedding-entertainer.jpg",
         "YCS-Leeds24-138.jpg",
+        "bez%20magician.jpg",
         "Blindfold-magician.jpg",
         "Corporate-entertainer.jpg",
         "Amazing-Wedding.jpg",
@@ -848,7 +953,6 @@
         "Incredible-mind-reading.jpg",
         "Janice-David462_preview.jpg",
         "MYA_0005.jpg",
-        "bez%20magician.jpg",
         "MYA_0345.jpg",
         "Magicians-fee.jpg",
         "Magicians-in-Leeds.jpg",
