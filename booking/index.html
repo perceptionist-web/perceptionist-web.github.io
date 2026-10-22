@@ -76,22 +76,22 @@
 
       background:
         linear-gradient(
-          90deg,
-          rgba(10, 9, 11, 0.95) 0%,
-          rgba(10, 9, 11, 0.74) 48%,
-          rgba(10, 9, 11, 0.18) 100%
-        ),
+    90deg,
+    rgba(10, 9, 11, 0.72) 0%,
+    rgba(10, 9, 11, 0.45) 48%,
+    rgba(10, 9, 11, 0.08) 100%
+  ),
         url("images/a-1.jpg") center 50% / cover no-repeat;
     }
 
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 45%;
-      background: linear-gradient(transparent, var(--night));
-      z-index: -1;
-    }
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 35%;
+  background: linear-gradient(transparent, rgba(16, 15, 18, 0.7));
+  z-index: -1;
+}
 
     .hero-inner {
       width: min(1120px, 92vw);
